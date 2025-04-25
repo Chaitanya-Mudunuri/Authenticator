@@ -578,7 +578,7 @@ placeholder = st.empty()
 
 try:
     while True:
-        ret, frame =  cv.VideoCapture()
+        ret, frame =  camera.read()
         if not ret:
             st.warning("⚠️ Cannot read from camera.")
             break
