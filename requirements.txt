@@ -6,3 +6,10 @@ scikit-learn
 ultralytics
 pillow
 mediapipe
+pickle
+csv
+copy
+itertools
+mtcnn
+matplotlib
+tensorflow
