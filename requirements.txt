@@ -6,7 +6,7 @@ scikit-learn
 ultralytics
 pillow
 mediapipe
-copy
+
 itertools
 mtcnn
 matplotlib
