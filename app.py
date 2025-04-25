@@ -578,7 +578,7 @@ placeholder = st.empty()
 
 try:
     while True:
-        ret, frame = camera.read()
+        ret, frame = camera.read(0)
         if not ret:
             st.warning("⚠️ Cannot read from camera.")
             break
