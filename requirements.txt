@@ -6,7 +6,6 @@ scikit-learn
 ultralytics
 pillow
 mediapipe
-pickle
 csv
 copy
 itertools
