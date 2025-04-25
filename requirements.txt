@@ -11,4 +11,3 @@ mtcnn
 matplotlib
 tensorflow
 keras_facenet
-protobuf==3.20.*
