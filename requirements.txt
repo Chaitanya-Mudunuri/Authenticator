@@ -9,3 +9,4 @@ mediapipe
 mtcnn
 matplotlib
 tensorflow
+keras_facenet
