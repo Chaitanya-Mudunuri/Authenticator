@@ -6,7 +6,6 @@ scikit-learn
 ultralytics
 pillow
 mediapipe
-csv
 copy
 itertools
 mtcnn
