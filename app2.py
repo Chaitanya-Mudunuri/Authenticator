@@ -35,22 +35,18 @@ st.title("AUTHENTICATE")
 # camera = cv.VideoCapture(0)
 
 @st.cache_resource
-def load_facenet_model():
+def load_models():
     facenet_model = FaceNet()
-    return facenet_model
-
-@st.cache_resource
-def load_mtcnn_model():
-    mtcnn_model = MTCNN()
-    return mtcnn_model
-
-
-@st.cache_resource
-def load_embeddings():
-    with open('mini2.pkl', "rb") as f:
-        return pickle.load(f)
     
-model = load_embeddings()
+    mtcnn_model = MTCNN()
+    
+    with open('mini2.pkl', "rb") as f:
+        embedding_model = pickle.load(f)
+
+    return facenet_model, mtcnn_model, embedding_model
+
+
+detector, embedder, model = load_models()
 
 try:
     classes = model.classes_
@@ -60,8 +56,6 @@ except AttributeError:
 
 #os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
-detector = load_mtcnn_model()
-embedder = load_facenet_model()
 
 
 def get_args():
