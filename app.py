@@ -31,9 +31,7 @@ st.title("AUTHENTICATE")
 FRAME_WINDOW = st.image([])
 
 #camera = cv.VideoCapture(0)
-camera_index = find_available_camera()
-if camera_index is not None:
-    cap = cv2.VideoCapture(camera_index)
+
 
 import pickle
 with open('mini2.pkl', 'rb') as f:
