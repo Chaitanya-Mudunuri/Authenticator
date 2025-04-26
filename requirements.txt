@@ -11,3 +11,5 @@ mediapipe
 mtcnn
 matplotlib
 tensorflow
+streamlit-webrtc
+av
