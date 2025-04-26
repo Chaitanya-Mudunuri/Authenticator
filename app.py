@@ -14,7 +14,7 @@ from model import PointHistoryClassifier
 import os
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from keras_facenet import FaceNet
+from keras_facenet import FaceNet, embedding_model
 import cv2 as cv
 import time
 import threading
@@ -42,7 +42,7 @@ except AttributeError:
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
-embedder = FaceNet()
+embedder = embedding_model.get_model()
 
 
 
