@@ -624,13 +624,13 @@ if image_file:
     st.success('File Upload Succesful!', icon="✅")
     if st.button("Kick Me"):
 
-        # result_img is the image with rectangle drawn on it (in case there are faces detected)
-        # result_faces is the array with co-ordinates of bounding box(es)
+        msg = st.toast('Gathering Facial Landmarks...')
         frame = np.array(frame.convert('RGB'))
         # result_img, result_faces = detect(image=image)
         fps = fps_calculator.get()
         
         face_thread = threading.Thread(target=recognize_faces, args=(frame,))
+        msg.toast('Initiating Hand Gesture...')
         face_thread.start()
         face_thread.join()
         
@@ -639,3 +639,4 @@ if image_file:
         cv.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         cv.putText(frame, f"Finger Gesture: {recognized_gesture}", (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         st.image(frame, use_column_width=True)
+        msg.toast('Done!', icon = "🥞")
