@@ -1,5 +1,7 @@
 streamlit
-opencv-python-headless==4.11.0.86
+keras==2.11 
+tensorflow==2.11 
+keras-facenet
 numpy
 matplotlib
 scikit-learn
@@ -9,4 +11,3 @@ mediapipe
 mtcnn
 matplotlib
 tensorflow
-keras_facenet
