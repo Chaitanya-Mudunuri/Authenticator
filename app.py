@@ -39,7 +39,7 @@ try:
 except AttributeError:
     print("Model does not have a 'classes_' attribute.")
 
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+#os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
 embedder = FaceNet()
