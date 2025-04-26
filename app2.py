@@ -612,8 +612,8 @@ image_file = st.file_uploader(
 if image_file:
 
     frame = Image.open(image_file)
-
-    if st.button("Process"):
+    st.success('File Upload Succesful!', icon="✅")
+    if st.button("Kick Me"):
 
         # result_img is the image with rectangle drawn on it (in case there are faces detected)
         # result_faces is the array with co-ordinates of bounding box(es)
