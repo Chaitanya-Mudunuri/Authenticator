@@ -605,32 +605,6 @@ placeholder = st.empty()
     # camera.release()
 
 
-image_file = st.file_uploader(
-            "Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-
-if image_file:
-
-    frame = Image.open(image_file)
-
-    if st.button("Process"):
-
-        # result_img is the image with rectangle drawn on it (in case there are faces detected)
-        # result_faces is the array with co-ordinates of bounding box(es)
-        frame = np.array(frame.convert('RGB'))
-        # results = model.predict(frame_rgb, conf=confidence_threshold)[0]
-
-        fps = fps_calculator.get()
-        
-        face_thread = threading.Thread(target=recognize_faces, args=(frame,))
-        face_thread.start()
-        face_thread.join()
-        
-        frame, recognized_gesture = recognize_hand_gesture(frame)
-        
-        cv.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-        cv.putText(frame, f"Finger Gesture: {recognized_gesture}", (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-        st.image(frame, use_column_width=True)
-
 
 run = st.checkbox('Run')
 FRAME_WINDOW = st.image([])
