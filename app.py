@@ -588,7 +588,9 @@ def classify_gesture(hand_landmarks):
 placeholder = st.empty()
 camera_index = find_available_camera()
 if camera_index is not None:
-    cap = cv2.VideoCapture(camera_index)
+    cap = cv.VideoCapture(camera_index)
+else:
+    cap = cv.VideoCapture(0)
 
 try:
     while True:
