@@ -30,8 +30,10 @@ st.title("AUTHENTICATE")
 # Start webcam
 FRAME_WINDOW = st.image([])
 
-camera = cv.VideoCapture(0)
-
+#camera = cv.VideoCapture(0)
+camera_index = find_available_camera()
+if camera_index is not None:
+    cap = cv2.VideoCapture(camera_index)
 
 import pickle
 with open('mini2.pkl', 'rb') as f:
@@ -46,6 +48,17 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
 embedder = FaceNet()
+
+
+def find_available_camera(max_index=5):
+    for index in range(max_index):
+        cap = cv2.VideoCapture(index)
+        if cap.isOpened():
+            cap.release()
+            return index
+        cap.release()
+    return None
+
 
 
 def get_args():
@@ -578,7 +591,8 @@ placeholder = st.empty()
 
 try:
     while True:
-        ret, frame =  camera.read()
+        
+        ret, frame =  cap.read()
         if not ret:
             st.warning("⚠️ Cannot read from camera.")
             break
@@ -601,4 +615,4 @@ try:
 except KeyboardInterrupt:
     st.stop()
 finally:
-    camera.release()
+    cap.release()
