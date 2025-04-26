@@ -37,6 +37,8 @@ st.title("AUTHENTICATE")
 @st.cache_resource
 def load_facenet_model():
     model = load_model("facenet_keras.h5")  # Make sure this file exists
+    model.save("facenet_model", save_format="tf")
+    model = tf.keras.models.load_model("facenet_model")
     return model
 
 import pickle
