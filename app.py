@@ -25,7 +25,7 @@ from mtcnn import MTCNN
 st.set_page_config(page_title="DUAL LAYERED AUTHENTICATOR", layout="wide")
 st.title("AUTHENTICATE")
 
-# confidence_threshold = st.slider("Confidence Threshold", 0.1, 1.0, 0.5, 0.05)
+confidence_threshold = st.slider("Confidence Threshold", 0.1, 1.0, 0.5, 0.05)
 
 # Start webcam
 FRAME_WINDOW = st.image([])
