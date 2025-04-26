@@ -19,13 +19,14 @@ import cv2 as cv
 import time
 import threading
 from mtcnn import MTCNN
-
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
+import av
 
 
 st.set_page_config(page_title="DUAL LAYERED AUTHENTICATOR", layout="wide")
 st.title("AUTHENTICATE")
 
-confidence_threshold = st.slider("Confidence Threshold", 0.1, 1.0, 0.5, 0.05)
+#confidence_threshold = st.slider("Confidence Threshold", 0.1, 1.0, 0.5, 0.05)
 
 # Start webcam
 FRAME_WINDOW = st.image([])
@@ -587,16 +588,9 @@ def classify_gesture(hand_landmarks):
 
 #placeholder = st.empty()
 
-cap = cv.VideoCapture(0)
-
-try:
-    while True:
-        
-        ret, frame =  cap.read()
-        if not ret:
-            st.warning("⚠️ Cannot read from camera.")
-            break
-
+class VideoProcessor(VideoProcessorBase):
+    def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
+        # Just return the original frame (you can process it here if needed)
         frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
         # results = model.predict(frame_rgb, conf=confidence_threshold)[0]
 
@@ -610,9 +604,11 @@ try:
         
         cv.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         cv.putText(frame, f"Finger Gesture: {recognized_gesture}", (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+        return frame
 
-        FRAME_WINDOW.image(frame)
-except KeyboardInterrupt:
-    st.stop()
-finally:
-    cap.release()
+
+webrtc_streamer(
+    key="webcam",
+    video_processor_factory=VideoProcessor,
+    media_stream_constraints={"video": True, "audio": False}
+)
