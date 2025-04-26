@@ -1,6 +1,6 @@
 streamlit
 keras==2.11 
-tensorflow==2.16
+tensorflow==2.16.1
 keras-facenet
 numpy
 matplotlib
