@@ -14,13 +14,13 @@ from model import PointHistoryClassifier
 import os
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from keras_facenet import FaceNet
 import cv2 as cv
 import time
 import threading
 from mtcnn import MTCNN
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 import av
+from keras.models import load_model
 
 
 st.set_page_config(page_title="DUAL LAYERED AUTHENTICATOR", layout="wide")
@@ -42,7 +42,7 @@ except AttributeError:
 #os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
-embedder = FaceNet()
+embedder = load_model('facenet_keras.h5')
 
 
 
