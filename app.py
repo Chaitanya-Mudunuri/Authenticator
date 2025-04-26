@@ -50,7 +50,7 @@ embedder = FaceNet()
 
 def find_available_camera(max_index=5):
     for index in range(max_index):
-        cap = cv2.VideoCapture(index)
+        cap = cv.VideoCapture(index)
         if cap.isOpened():
             cap.release()
             return index
