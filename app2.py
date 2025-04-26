@@ -613,22 +613,22 @@ while run:
     # Reading image from video stream
     _, img = camera.read()
     # Call method we defined above
-    if st.button("Capture & Process"):
+    # if st.button("Capture & Process"):
 
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        #img, a = detect(img)
-        fps = fps_calculator.get()
+    #     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    #     #img, a = detect(img)
+    #     fps = fps_calculator.get()
     
-        face_thread = threading.Thread(target=recognize_faces, args=(img,))
-        face_thread.start()
-        face_thread.join()
+    #     face_thread = threading.Thread(target=recognize_faces, args=(img,))
+    #     face_thread.start()
+    #     face_thread.join()
         
-        img, recognized_gesture = recognize_hand_gesture(img)
+    #     img, recognized_gesture = recognize_hand_gesture(img)
         
-        cv.putText(img, f"FPS: {fps:.2f}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-        cv.putText(img, f"Finger Gesture: {recognized_gesture}", (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    #     cv.putText(img, f"FPS: {fps:.2f}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    #     cv.putText(img, f"Finger Gesture: {recognized_gesture}", (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
        # st.image(img, use_column_width=True)
-        FRAME_WINDOW.image(img)
-        break
-    else:
-        st.write('Stopped')
+    FRAME_WINDOW.image(img)
+        
+else:
+    st.write('Stopped')
