@@ -28,10 +28,6 @@ st.title("AUTHENTICATE")
 
 #confidence_threshold = st.slider("Confidence Threshold", 0.1, 1.0, 0.5, 0.05)
 
-# Start webcam
-FRAME_WINDOW = st.image([])
-
-#camera = cv.VideoCapture(0)
 
 
 import pickle
@@ -47,16 +43,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
 embedder = FaceNet()
-
-
-def find_available_camera(max_index=5):
-    for index in range(max_index):
-        cap = cv.VideoCapture(index)
-        if cap.isOpened():
-            cap.release()
-            return index
-        cap.release()
-    return None
 
 
 
