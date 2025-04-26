@@ -622,7 +622,7 @@ if image_file:
 
     frame = Image.open(image_file)
     st.success('File Upload Succesful!', icon="✅")
-    if st.button("Kick Me"):
+    if st.button("Ikkada click chey"):
 
         msg = st.toast('Gathering Facial Landmarks...')
         frame = np.array(frame.convert('RGB'))
