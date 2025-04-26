@@ -19,6 +19,7 @@ import cv2 as cv, cv2
 import time
 import threading
 from mtcnn import MTCNN
+from keras.models import load_model
 from PIL import Image
 
 
@@ -33,6 +34,10 @@ st.title("AUTHENTICATE")
 
 # camera = cv.VideoCapture(0)
 
+@st.cache_resource
+def load_facenet_model():
+    model = load_model("facenet_keras.h5")  # Make sure this file exists
+    return model
 
 import pickle
 with open('mini2.pkl', 'rb') as f:
@@ -46,7 +51,7 @@ except AttributeError:
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
-embedder = FaceNet()
+embedder = load_facenet_model()
 
 
 def get_args():
