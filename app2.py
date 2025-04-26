@@ -15,7 +15,7 @@ import os
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from keras_facenet import FaceNet
-import cv2 as cv
+import cv2 as cv, cv2
 import time
 import threading
 from mtcnn import MTCNN
