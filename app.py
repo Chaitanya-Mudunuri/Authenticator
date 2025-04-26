@@ -585,10 +585,7 @@ def classify_gesture(hand_landmarks):
 #     cap.release()
 #     cv.destroyAllWindows()
 
-placeholder = st.empty()
-camera_index = find_available_camera()
-if camera_index is not None:
-    cap = cv.VideoCapture(camera_index)
+#placeholder = st.empty()
 
 cap = cv.VideoCapture(0)
 
