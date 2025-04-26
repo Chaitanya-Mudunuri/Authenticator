@@ -614,6 +614,9 @@ if image_file:
     with st.spinner("Wait for it...", show_time=True):
         time.sleep(5)
         st.success("Done!")
+    
+    msg = st.toast('Gathering Data...!')
+
 
     frame = Image.open(image_file)
     st.success('File Upload Succesful!', icon="✅")
