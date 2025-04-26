@@ -1,4 +1,4 @@
-streamlit
+streamlit==1.44.0
 keras
 tensorflow==2.16.1
 keras-facenet
