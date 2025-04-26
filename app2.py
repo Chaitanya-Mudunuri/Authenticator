@@ -21,7 +21,7 @@ import threading
 from mtcnn import MTCNN
 from keras.models import load_model
 from PIL import Image
-
+import pickle
 
 
 st.set_page_config(page_title="DUAL LAYERED AUTHENTICATOR", layout="wide")
@@ -36,24 +36,32 @@ st.title("AUTHENTICATE")
 
 @st.cache_resource
 def load_facenet_model():
-    model = load_model("facenet_keras.h5")  # Make sure this file exists
-    model.save("facenet_model", save_format="tf")
-    model = tf.keras.models.load_model("facenet_model")
-    return model
+    facenet_model = FaceNet()
+    return facenet_model
 
-import pickle
-with open('mini2.pkl', 'rb') as f:
-    model = pickle.load(f)
+@st.cache_resource
+def load_mtcnn_model():
+    mtcnn_model = MTCNN()
+    return mtcnn_model
+
+
+@st.cache_resource
+def load_embeddings():
+    with open('mini2.pkl', "rb") as f:
+        return pickle.load(f)
+    
+model = load_embeddings()
+
 try:
     classes = model.classes_
     print("Model was trained on the following classes:", classes)
 except AttributeError:
     print("Model does not have a 'classes_' attribute.")
 
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+#os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
-detector = MTCNN()
-embedder = FaceNet()
+detector = load_mtcnn_model()
+embedder = load_facenet_model()
 
 
 def get_args():
