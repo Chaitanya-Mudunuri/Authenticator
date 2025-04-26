@@ -53,7 +53,7 @@ except AttributeError:
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 detector = MTCNN()
-embedder = load_facenet_model()
+embedder = FaceNet()
 
 
 def get_args():
