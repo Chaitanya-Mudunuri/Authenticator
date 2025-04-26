@@ -609,22 +609,18 @@ placeholder = st.empty()
 image_file = st.file_uploader(
             "Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
 
-progress_text = "Upload in progress. Please wait..."
-my_bar = st.progress(0, text=progress_text)
-
-for percent_complete in range(100):
-    time.sleep(0.01)
-    my_bar.progress(percent_complete + 1, text=progress_text)
-time.sleep(1)
-my_bar.empty()
 
 if image_file:
+    with st.spinner("Wait for it...", show_time=True):
+        time.sleep(5)
+        st.success("Done!")
 
     frame = Image.open(image_file)
     st.success('File Upload Succesful!', icon="✅")
     if st.button("Ikkada click chey"):
 
         msg = st.toast('Gathering Facial Landmarks...')
+        msg.toast('Gathering Facial Landmarks...')
         frame = np.array(frame.convert('RGB'))
         # result_img, result_faces = detect(image=image)
         fps = fps_calculator.get()
@@ -638,5 +634,6 @@ if image_file:
         
         cv.putText(frame, f"FPS: {fps:.2f}", (10, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         cv.putText(frame, f"Finger Gesture: {recognized_gesture}", (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-        st.image(frame, use_column_width=True)
         msg.toast('Done!', icon = "🥞")
+        st.image(frame, use_column_width=True)
+        
